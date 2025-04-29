@@ -1,3 +1,5 @@
-const handleJobPost = require("./jobController");
+const { handleAddAdmin, handleAdminDelete } = require("./adminController");
+const { handleJobDelete, handleJobPost } = require("./jobController");
 
-module.exports = { handleJobPost };
+
+module.exports = { handleJobDelete, handleJobPost, handleAddAdmin, handleAdminDelete };
