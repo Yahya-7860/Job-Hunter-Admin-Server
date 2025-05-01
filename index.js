@@ -4,8 +4,11 @@ const app = express();
 const mongoose = require("mongoose");
 const { jobRouter, adminRouter } = require('./router');
 const PswHashing = require('./middleware/pswHash');
+const cors = require("cors");
 
 const MONGODB_URL = process.env.MONGODB_URL;
+
+app.use(cors());
 
 app.listen(5000, () => {
     console.log("Server started listening at port 5000");
