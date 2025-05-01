@@ -16,4 +16,17 @@ const handleJobPost = async (req, res) => {
     }
 
 }
-module.exports = handleJobPost;
+
+const handleJobDelete = async (req, res) => {
+    const { id } = req.query;
+    if (id) {
+        try {
+            await jobModel.findOneAndDelete({ _id: id });
+            res.status(200).json({ Message: "Post Deleted" });
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ Message: "Unable to delete post" });
+        }
+    }
+}
+module.exports = { handleJobPost, handleJobDelete };

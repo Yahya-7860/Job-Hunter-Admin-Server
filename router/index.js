@@ -1,3 +1,4 @@
+const { adminRouter } = require("./adminRoute");
 const { jobRouter } = require("./jobRoute");
 
-module.exports = { jobRouter };
+module.exports = { jobRouter, adminRouter };
