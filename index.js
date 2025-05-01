@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const mongoose = require("mongoose");
 const { jobRouter, adminRouter } = require('./router');
+const PswHashing = require('./middleware/pswHash');
 
 const MONGODB_URL = process.env.MONGODB_URL;
 
@@ -24,3 +25,4 @@ app.use(express.json());
 app.use("/", jobRouter);
 app.use("/", jobRouter);
 app.use("/", adminRouter);
+app.use("/", PswHashing, adminRouter);
