@@ -6,6 +6,10 @@ const jobSchema = new mongoose.Schema(
             type: String,
             required: true
         },
+        role: {
+            type: String,
+            required: true
+        },
         overview: {
             type: String,
             required: true
@@ -20,7 +24,8 @@ const jobSchema = new mongoose.Schema(
             type: String,
             required: true
         }
-    }
+    },
+    { timestamps: true }
 )
 const jobModel = mongoose.model("jobs", jobSchema);
 module.exports = { jobModel };
