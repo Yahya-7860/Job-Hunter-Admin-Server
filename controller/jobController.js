@@ -29,4 +29,14 @@ const handleJobDelete = async (req, res) => {
         }
     }
 }
-module.exports = { handleJobPost, handleJobDelete };
+
+const handleGetPosts = async (req, res) => {
+    try {
+        const posts = await jobModel.find();
+        res.status(200).json({ Message: "success", posts })
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ Message: "failed" });
+    }
+}
+module.exports = { handleJobPost, handleJobDelete, handleGetPosts };
