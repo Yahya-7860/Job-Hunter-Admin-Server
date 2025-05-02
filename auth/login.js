@@ -22,7 +22,7 @@ const handleAdminLogin = async (req, res) => {
                 password: admin.password
             }, secretKey, { expiresIn: '1h' })
 
-            res.status(200).json({ Message: "User Found", token });
+            res.status(200).json({ Message: "Found", token });
         } catch (error) {
             console.error(error);
             res.status(401).json({ Message: "Authentication failed" });

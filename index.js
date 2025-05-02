@@ -26,6 +26,5 @@ DB_Connect();
 app.use(express.json());
 
 app.use("/", jobRouter);
-app.use("/", jobRouter);
-app.use("/", adminRouter);
+app.use("/admin-login", adminRouter);
 app.use("/", PswHashing, adminRouter);
