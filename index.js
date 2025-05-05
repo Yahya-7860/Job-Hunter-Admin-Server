@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const { jobRouter, adminRouter } = require('./router');
 const PswHashing = require('./middleware/pswHash');
 const cors = require("cors");
+const { EmailRouter } = require('./router/emailRoute');
 
 const MONGODB_URL = process.env.MONGODB_URL;
 
@@ -25,6 +26,7 @@ const DB_Connect = async () => {
 DB_Connect();
 app.use(express.json());
 
+app.use("/mail", EmailRouter);
 app.use("/", jobRouter);
 app.use("/admin-login", adminRouter);
 app.use("/", PswHashing, adminRouter);
