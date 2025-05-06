@@ -1,5 +1,7 @@
-const { handleEmail } = require("../controller");
-const EmailRouter = require("express").Router();
+const { handleEmail, handleEmailDelete, handleGetEmail } = require("../controller");
+const emailRouter = require("express").Router();
 
-EmailRouter.post('/save_email', handleEmail);
-module.exports = { EmailRouter };
+emailRouter.post('/save_email', handleEmail);
+emailRouter.delete('/delete_email', handleEmailDelete);
+emailRouter.get('/get_email', handleGetEmail);
+module.exports = { emailRouter };
