@@ -9,7 +9,7 @@ const MONGODB_URL = process.env.MONGODB_URL;
 
 app.use(cors());
 
-app.listen(5000, () => {
+app.listen(5000, '0.0.0.0', () => {
     console.log("Server started listening at port 5000");
 })
 const DB_Connect = async () => {
