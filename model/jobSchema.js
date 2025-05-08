@@ -22,7 +22,9 @@ const jobSchema = new mongoose.Schema(
         },
         applyLink: {
             type: String,
-            required: true
+        },
+        email: {
+            type: String,
         }
     },
     { timestamps: true }
