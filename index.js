@@ -6,6 +6,7 @@ const { jobRouter, adminRouter, emailRouter } = require('./router');
 const PswHashing = require('./middleware/pswHash');
 const cors = require("cors");
 const MONGODB_URL = process.env.MONGODB_URL;
+const socket = new WebSocket('ws://localhost:8080');
 
 app.use(cors());
 
