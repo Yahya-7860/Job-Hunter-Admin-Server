@@ -15,4 +15,4 @@ const PswHashing = async (req, res, next) => {
     }
 };
 
-module.exports = PswHashing;
+module.exports = { PswHashing };

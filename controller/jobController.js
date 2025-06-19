@@ -1,4 +1,6 @@
 const { jobModel } = require("../model");
+const { getIo } = require("../services/socket");
+
 
 const handleJobPost = async (req, res) => {
     const { companyName, role, jobType, overview, jobDescription, requirement, applyLink, email } = req.body;
@@ -9,6 +11,9 @@ const handleJobPost = async (req, res) => {
     else {
         try {
             const job = await jobModel.create({ companyName, role, jobType, overview, jobDescription, requirement, applyLink, email })
+            const io = getIo();
+            // console.log('io is === ' + !!io.emit)
+            io.emit('onNewJobPosted', job);
             res.status(200).json({ Message: "Job Posted", job });
         } catch (error) {
             console.error(error);
