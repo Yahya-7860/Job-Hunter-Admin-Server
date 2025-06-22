@@ -20,7 +20,7 @@ const handleAdminLogin = async (req, res) => {
             const token = jwt.sign({
                 username: admin.username,
                 password: admin.password
-            }, secretKey, { expiresIn: '1h' })
+            }, secretKey, { expiresIn: 60 * 60 });
 
             res.status(200).json({ Message: "Found", token });
         } catch (error) {

@@ -5,10 +5,10 @@ let io;
 
 function setupSocketServer(app) {
     const httpServer = createServer(app);
-
+    //!change this url everytime with new network
     io = new Server(httpServer, {
         cors: {
-            origin: "http://localhost:3000",
+            origin: "http://192.168.217.120:3000",
             methods: ["GET", "POST"],
             credentials: true,
         },

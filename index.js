@@ -7,7 +7,7 @@ const { PswHashing } = require('./middleware/pswHash');
 const cors = require("cors");
 const { setupSocketServer } = require('./services/socket');
 const MONGODB_URL = process.env.MONGODB_URL;
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 
 
 app.use(cors());

@@ -1,9 +1,28 @@
+require('dotenv').config();
 const { jobModel } = require("../model");
 const { getIo } = require("../services/socket");
-
+const nodemailer = require('nodemailer')
+const SECRET_PASS = process.env.SECRET_PASS;
 
 const handleJobPost = async (req, res) => {
-    const { companyName, role, jobType, overview, jobDescription, requirement, applyLink, email } = req.body;
+
+    const { formData, allSubs } = req.body;
+    const { companyName, role, jobType, overview, jobDescription, requirement, applyLink, email } = formData;
+
+    let transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'help.jobhunter@gmail.com',
+            pass: 'ocsc fode jqwo ejla'
+        }
+    });
+    let mailOptions = {
+        from: 'help.jobhunter@gmail.com',
+        to: 'explore.shamin7860@gmail.com',
+        bcc: allSubs.join(','),
+        subject: 'New hiring posted on Job Hunter',
+        text: 'Apply Here'
+    };
 
     if (!companyName || !role || !overview) {
         return res.status(400).json({ Message: "All fields are required" });
@@ -12,8 +31,16 @@ const handleJobPost = async (req, res) => {
         try {
             const job = await jobModel.create({ companyName, role, jobType, overview, jobDescription, requirement, applyLink, email })
             const io = getIo();
-            // console.log('io is === ' + !!io.emit)
             io.emit('onNewJobPosted', job);
+            //! currently stopped for testing 
+            // transporter.sendMail(mailOptions, (error, info) => {
+            //     if (error) {
+            //         console.log(error);
+            //     } else {
+            //         console.log('Email sent successfully to:', allSubs);
+            //     }
+            // })
+
             res.status(200).json({ Message: "Job Posted", job });
         } catch (error) {
             console.error(error);
